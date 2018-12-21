@@ -1,0 +1,91 @@
+.header-md::after {
+  background-image: none;
+}
+ion-header {
+  background: radial-gradient(ellipse at center -200px, #5c92d5 0%, #041d5e 100%);
+  
+  > ion-grid {
+    > ion-row:nth-child(1) {
+      position: relative;
+      #bg {
+        width: 100%;
+      }
+      ion-grid {
+        position: absolute;
+        top: 0;
+        left: 0;
+        width: 100%;
+        height: 100%;
+        > ion-row {
+          height: 100%;
+          ion-col:first-child {
+            text-align: center;
+          }
+          ion-col:nth-child(2) {
+            #logo {
+              width: 140px;
+              margin: 0 auto;
+              display: block;
+            }
+            #vehicle-name {
+              font-size: 12px;
+              padding-top: 10px;
+              text-align: center;
+            }
+          }
+        }
+        #connect {
+          height: 28px;
+        }
+      }
+    }
+    > ion-row:nth-child(2) {
+      padding-bottom: 10px;
+      padding-left: 20px;
+      padding-right: 20px;
+
+      .progress-title {
+        font-weight: 600;
+        font-size: 12px;
+      }
+      > ion-col:nth-child(3) {
+        .progress-title {
+          float: right;
+        }
+      }
+      /deep/ app-progress-bar {
+        /deep/ &#gsm-signal {
+          /deep/ .bar {
+            background: linear-gradient(#05ae5c, #0dd350) !important;
+          }
+        }
+        /deep/ &#gps-signal {
+          /deep/ .bar {
+            background: linear-gradient(#f7bd2f, #f9a106) !important;
+          }
+        }
+      }
+      > ion-col:nth-child(2) {
+        text-align: center;
+        font-size: 11px;
+        font-weight: 600;
+        
+        #connection-time {
+          font-size: 10px;
+          color: #bdbcbc;
+        }
+      }
+      > ion-col:nth-child(3) {
+        text-align: right;
+      }
+    }
+  }
+}
+
+#semicircle {
+  width: 100%;
+  height: 55px;
+  border-top-left-radius: 100%;
+  border-top-right-radius: 100%;
+  background: #272b35;
+}

@@ -1,0 +1,44 @@
+/deep/ .form-box {
+  // border: 1px solid black;
+  $bg: #434343;
+  padding: 20px;
+  border-radius: 2.5px;
+  background-color: $bg;
+  opacity: 0.8;
+  min-width: 272px;
+  width: 70%;
+  margin: 0 auto;
+
+  ion-item {
+    text-align: center;
+    --background: $bg;
+    &.entry-input-item {
+      margin-left: auto;
+      margin-right: auto;
+      --padding-start: 0px;
+      --border-color: #979797;
+      // --highlight-color-invalid: red;
+      ion-label {
+        margin-bottom: 3px;
+        img {
+          vertical-align: bottom;
+        }
+      }
+      ion-input {
+        margin-bottom: -10px;
+        font-size: 14px;
+        font-weight: normal;
+        --background: $bg;
+        --color: #eaeaea;
+        --min-width: 0px;
+      }
+    }
+  }
+
+  ion-button {
+    margin-top: 20px;
+    text-transform: none;
+    letter-spacing: 2px;
+    font-weight: normal;
+  }
+}

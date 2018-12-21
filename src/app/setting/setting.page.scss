@@ -1,0 +1,26 @@
+p {
+  font-size: 12px;
+}
+
+ion-icon {
+  margin: 10px 20px;
+  font-size: 40px;
+}
+
+ion-label {
+  font-size: 14px !important;
+}
+
+.accelerometerAlarm {
+  > ion-item:nth-child(1) {
+    ion-icon {
+      font-size: 34px;
+    }
+  }
+  > ion-item:nth-child(2) {
+    ion-icon {
+      font-size: 46px;
+      margin-left: 14px;
+    }
+  }
+}

@@ -1,0 +1,57 @@
+<app-header></app-header>
+
+<ion-content>
+  <div class="page-content">
+    <form [formGroup]="form">
+      <div id="profile-img">
+        <img class="circle" *ngIf="attrs && attrs.photoURL" [src]="attrs.photoURL" />
+        <input #fileInput type="file" accept="image/*" (change)="changeImg($event)" />
+        <ion-text class="clickable" color="medium" (click)="fileInput.click()">Cambiar imagen</ion-text>
+      </div>
+      <ion-list lines="none">
+        <ng-container formGroupName="name">
+          <ion-item class="input-item">
+            <ion-label position="stacked">Nombre</ion-label>
+            <ion-input type="text" formControlName="first"></ion-input>
+          </ion-item>
+          <ion-item class="input-item">
+            <ion-label position="stacked">Apellidos</ion-label>
+            <ion-input type="text" formControlName="last"></ion-input>
+          </ion-item>
+        </ng-container>
+        <ion-item class="input-item">
+          <ion-label position="stacked">Contraseña</ion-label>
+          <ion-input type="password" formControlName="password" minlength="6"></ion-input>
+        </ion-item>
+        <app-validation-msg [control]="form.controls.password" [messages]="validationMessages.password"></app-validation-msg>
+        <ion-item class="input-item">
+          <ion-label position="stacked">Nombre de usuario</ion-label>
+          <ion-input type="text" formControlName="userName"></ion-input>
+        </ion-item>
+        <ng-container formGroupName="address">
+          <ion-item class="input-item">
+            <ion-label position="stacked">Ciudad</ion-label>
+            <ion-input type="text" formControlName="city"></ion-input>
+          </ion-item>
+          <ion-item class="input-item">
+            <ion-label position="stacked">Calle</ion-label>
+            <ion-input type="text" formControlName="street"></ion-input>
+          </ion-item>
+        </ng-container>
+        <ion-item class="input-item">
+          <ion-label position="stacked">Teléfono</ion-label>
+          <ion-input type="tel" formControlName="phone"></ion-input>
+        </ion-item>
+      </ion-list>
+    </form>
+    <!-- <ion-item lines="none">
+    </ion-item> -->
+    <div id="buttons">
+      <ion-button (click)="update()" expand="block" color="primary" [disabled]="!form.valid">Actualizar</ion-button>
+      <!-- <ion-item lines="none">
+      </ion-item> -->
+      <ion-button (click)="logout()" expand="block" color="danger">Desconectar</ion-button>
+    </div>
+  </div>
+  <app-footer-text></app-footer-text>
+</ion-content>

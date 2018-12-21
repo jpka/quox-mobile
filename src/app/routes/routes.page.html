@@ -1,0 +1,38 @@
+<app-header></app-header>
+
+<ion-content>
+  <div id="map">
+    <agm-map [latitude]="center ? center.lat : 0" [longitude]="center ? center.lng : 0" [zoom]="16">
+      <agm-polyline *ngIf="route" strokeColor="#FF0000" [strokeWeight]="6" [geodesic]="true">
+        <agm-marker iconUrl="/assets/images/marker.png" [agmFitBounds]="true" [latitude]="route.points[0].lat" [longitude]="route.points[0].lng"></agm-marker>
+        <agm-marker iconUrl="/assets/images/marker.png" [agmFitBounds]="true" [latitude]="route.points[route.points.length - 1].lat" [longitude]="route.points[route.points.length - 1].lng"></agm-marker>
+        <agm-polyline-point *ngFor="let point of route.points" [latitude]="point.lat" [longitude]="point.lng"></agm-polyline-point>
+      </agm-polyline>
+    </agm-map>
+  </div>
+  <div id="routes">
+    <ion-list>
+      <ion-item lines="full" *ngFor="let route of routes" button (click)="see(route)">
+        <img class="circle vehicle-pic" *ngIf="vehicle$ | async as vehicle" [src]="vehicle.picUrl"/>
+        <div class="date-wrapper">
+          <div class="date">{{route.times[0] | date: "EEEE d 'de' MMMM"}}</div>
+          <div class="duration yellow-color">Duración: {{route.duration.hours()}}:{{route.duration.minutes()}}:{{route.duration.seconds()}}</div>
+        </div>
+        <div class="start-end">
+          <div>
+            <div>Inicio: {{route.times[0] | date: "HH:mm:ss"}}</div>
+            <div>Fin: {{route.times[route.times.length - 1] | date: "HH:mm:ss"}}</div>
+          </div>
+        </div>
+        <!-- <ion-grid>
+          <ion-row>
+            <ion-col>
+            </ion-col>
+            <ion-col>
+            </ion-col>
+          </ion-row>
+        </ion-grid> -->
+      </ion-item>
+    </ion-list>
+  </div>
+</ion-content>

@@ -1,0 +1,169 @@
+ion-content {
+  font-weight: 600;
+
+  .off {
+    opacity: 0.5;
+  }
+
+  > ion-grid {
+    height: 100%;
+    background: radial-gradient(ellipse, #5c92d5 0%, #041d5e 100%);
+    color: #fff;
+    
+    > ion-row:nth-child(1) {
+      height: 72%;
+      
+      .indicator-icon {
+        text-align: center;
+        margin: 0 auto;
+    
+        > img {
+          width: 100%;
+          display: block;
+        }
+        > div {
+          font-size: 12px;
+          margin: 0 auto;
+        }
+      }
+      
+      > ion-col:nth-child(1) {
+        .indicator-icon {
+          width: 75%;
+  
+          > img {
+            margin-top: -10px;
+          }
+          > div {
+            margin-top: -15px;
+          }
+        }
+      }
+
+      > ion-col:nth-child(3) {
+        .indicator-icon {
+          position: relative;
+          margin-bottom: 5px;
+          .badge {
+            right: unset;
+            top: unset;
+          }
+          img {
+            display: block;
+            margin: 0 auto;
+            width: 52%;
+          }
+          a {
+            text-decoration: none;
+            color: inherit;
+          }
+        }
+      }
+
+      > ion-col:nth-child(2) {
+        background: url("/assets/images/car.png") no-repeat center;
+        background-size: contain;
+        #car-img {
+          display: none;
+          margin: 0 auto;
+          // max-height: 80%;
+        }
+        .overlay {
+          background: none !important;
+          position: absolute;
+          top: 0px;
+          left: 0px;
+          width: 100%;
+          height: 100%;
+          z-index: 1;
+          text-align: center;
+          
+          ion-row.middle {
+            font-size: 1.4em;
+          }
+          > ion-row {
+            height: 33%;
+          }
+          
+          .car-icon {
+            opacity: 0.5;
+            &.on {
+              opacity: 1;
+            }
+            &.meridian {
+              margin: 0 auto;
+              img {
+                display: block;
+                // height: 7vh;
+                margin: 0 auto;
+              }
+              // left: calc(50% - 6vw);
+            }
+            &.equator {
+              // width: 27vw;
+              // top: 50%;
+            }
+            &#engine-cut {
+              top: 13%;
+            }
+            &#aux {
+              bottom: 50px;
+            }
+            &#alarm-armed {
+              right: -30px;
+            }
+            &#alarm-disarmed {
+              left: -30px;
+            }
+          }
+          
+          > ion-row:nth-child(2) {
+            width: calc(100% + 143px);
+            margin-left: -71px;
+          }
+        }
+      }
+    }
+
+    > ion-row:nth-child(2) {
+      height: 28%;
+
+      > ion-col {
+        height: 84%;
+
+        .progress-circle {
+          height: 100%;
+          position: relative;
+          text-align: center;
+          
+          .filling {
+            position: absolute;
+            top: 50%;
+            margin-top: -4.7vh;
+            left: 0;
+            width: 100%;
+
+            img {
+              height: 3.5vh;
+            }
+
+            .value {
+              font-size: 2.4vh;
+              margin-top: -3px;
+            }
+            .unit {
+              font-size: 1.3vh;
+              border-radius: 7px;
+              padding: 1px 4px;
+              border: 1px solid;
+            }
+          }
+          
+          .percent {
+            margin-top: -1.7vh;
+          }
+        }
+      }
+    }
+  }
+}

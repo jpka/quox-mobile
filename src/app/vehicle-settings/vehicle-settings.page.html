@@ -1,0 +1,47 @@
+<app-header></app-header>
+
+<ion-content *ngIf="vehicle$ | async as vehicle">
+  <div class="page-content">
+    <ion-list lines="none">
+      <ion-item id="vehicle-img" lines="none">
+        <div class="block center center-text">
+          <img class="circle" [src]="vehicle.picUrl" />
+          <input #fileInput type="file" accept="image/*" (change)="changeImg($event)" />
+          <ion-text class="clickable" color="medium" (click)="fileInput.click()">Cambiar imagen</ion-text>
+        </div>
+      </ion-item>
+      <ion-item lines="none">
+        <ion-text id="imei" class="center block">IMEI {{vehicle.imei}}</ion-text>
+      </ion-item>
+      <ion-item id="name-input" class="input-item" lines="none">
+        <ion-input class="center-text" [(ngModel)]="vehicleName" (ionChange)="nameChange()" [debounce]="1000" [ngModelOptions]="{'standalone': true}"></ion-input>
+        <ion-spinner *ngIf="updatingName" name="crescent" ></ion-spinner>
+        <ion-icon *ngIf="vehicleName !== ''" class="clickable" name="close-circle" color="medium" (click)="vehicleName = ''"></ion-icon>
+      </ion-item>
+      <ion-item lines="none">
+        <ion-text class="center block">Firmware alarma: V1.1.0</ion-text>
+      </ion-item>
+    </ion-list>
+
+    <ion-list lines="full" class="commands">
+      <ion-item lines="full">
+        <ion-icon slot="start" src="/assets/images/power.svg"></ion-icon>
+        <ion-label>
+          Reseteo alarma
+        </ion-label>
+        <ion-icon class="clickable" slot="end" src="/assets/images/plus.svg" (click)="sendCmd('partial reset', 'reseteo de alarma')"></ion-icon>
+      </ion-item>
+      <ion-item lines="full">
+        <ion-icon slot="start" src="/assets/images/valores_fabrica.svg"></ion-icon>
+        <ion-label>Valores de fábrica</ion-label>
+        <ion-icon class="clickable" slot="end" src="/assets/images/plus.svg" (click)="sendCmd('factory reset', 'reseteo de fábrica')"></ion-icon>
+      </ion-item>
+      <ion-item detail>
+        <ion-icon slot="start" src="/assets/images/subscripcion.svg"></ion-icon>
+        <ion-label>Gestionar subscripción</ion-label>
+      </ion-item>
+    </ion-list>
+  </div>
+
+  <app-footer-text></app-footer-text>
+</ion-content>

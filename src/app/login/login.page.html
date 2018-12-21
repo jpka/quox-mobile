@@ -1,0 +1,30 @@
+<ion-content>
+  <app-entry-form>
+    <img id="logo" src="/assets/images/logo_blanco.png"/>
+    <div class="form-box">
+      <form [formGroup]="form">
+        <ion-item class="entry-input-item">
+          <ion-label>
+            <img src="/assets/images/carta.svg"/>
+          </ion-label>
+          <ion-input type="email" placeholder="Email" formControlName="email"></ion-input>
+        </ion-item>
+        <app-validation-msg [control]="form.controls.email" [messages]="validationMessages.email"></app-validation-msg>
+        <ion-item class="entry-input-item">
+          <ion-label>
+            <img src="/assets/images/key.svg"/>
+          </ion-label>
+          <ion-input type="password" placeholder="Contraseña" formControlName="password"></ion-input>
+        </ion-item>
+        <app-validation-msg [control]="form.controls.password" [messages]="validationMessages.password"></app-validation-msg>
+        <ion-button 
+          color="primary" 
+          fill="solid" 
+          expand="block"
+          [disabled]="!form.valid"
+          (click)="login()">Entrar</ion-button>
+        <ion-button color="secondary" expand="block" fill="solid" href="/signup" routerDirection="forward">Registro</ion-button>
+      </form>
+    </div>
+  </app-entry-form>
+</ion-content>

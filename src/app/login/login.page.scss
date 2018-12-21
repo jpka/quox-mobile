@@ -1,0 +1,18 @@
+ion-content {
+  --background: no-repeat url("/assets/images/registro.png") center / cover;
+}
+
+#logo {
+  position: absolute;
+  top: 12%;
+  left: 50%;
+  margin-left: -105px;
+}
+
+.form-box {
+  margin-top: 50%;
+
+  ion-input {
+    margin-left: -22px;
+  }
+}

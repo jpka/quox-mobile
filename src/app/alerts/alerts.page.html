@@ -1,0 +1,17 @@
+<app-header></app-header>
+
+<ion-content>
+  <agm-map *ngIf="center" [latitude]="center.lat" [longitude]="center.lng" [zoom]="16">
+    <agm-marker *ngIf="selected" iconUrl="/assets/images/marker.png" [latitude]="selected.position.lat" [longitude]="selected.position.lng"></agm-marker>
+  </agm-map>
+  <ion-list>
+    <ion-item [id]="formatId(alarm.key)" button lines="full" *ngFor="let alarm of alarms" (click)="select(alarm)">
+      <img slot="start" class="circle vehicle-pic" *ngIf="vehicle$ | async as vehicle" [src]="vehicle.picUrl" />
+      <div class="label">
+        <div>Alerta por {{data[alarm.type].label}}</div>
+        <div class="yellow-color">{{alarm.date | date: 'd/M/yy  H:mm:ss'}}</div>
+      </div>
+      <ion-icon slot="end" src="/assets/images/icons/{{data[alarm.type].icon}}.svg"></ion-icon>
+    </ion-item>
+  </ion-list>
+</ion-content>

@@ -1,0 +1,54 @@
+<ion-content>
+  <app-entry-form>
+    <div class="form-box">
+      <form [formGroup]="form">
+        <ion-list>
+          <ng-container formGroupName="name">
+            <ion-item class="entry-input-item">
+              <ion-input formControlName="first" type="text" placeholder="Nombre"></ion-input>
+            </ion-item>
+            <app-validation-msg [control]="form.controls.name.get('first')" [messages]="validationMessages.firstName"></app-validation-msg>
+            <ion-item class="entry-input-item">
+              <ion-input formControlName="last" type="text" placeholder="Apellidos"></ion-input>
+            </ion-item>
+            <app-validation-msg [control]="form.controls.name.get('last')" [messages]="validationMessages.lastName"></app-validation-msg>
+          </ng-container>
+          <ion-item class="entry-input-item">
+            <ion-input formControlName="email" type="email" placeholder="Correo electrónico"></ion-input>
+          </ion-item>
+          <app-validation-msg [control]="form.controls.email" [messages]="validationMessages.email"></app-validation-msg>
+          <ion-item class="entry-input-item">
+            <ion-input formControlName="phone" type="tel" placeholder="Teléfono de contacto"></ion-input>
+          </ion-item>
+          <app-validation-msg [control]="form.controls.phone" [messages]="validationMessages.phone"></app-validation-msg>
+          <ng-container formGroupName="password">
+            <ion-item class="entry-input-item">
+              <ion-input formControlName="password" type="password" placeholder="Contraseña"></ion-input>
+            </ion-item>
+            <app-validation-msg [control]="form.controls.password.get('password')" [messages]="validationMessages.password"></app-validation-msg>
+            <ion-item class="entry-input-item">
+              <ion-input formControlName="confirmation" type="password" placeholder="Confirmar contraseña"></ion-input>
+            </ion-item>
+          </ng-container>
+          <app-validation-msg [control]="form.controls.password" [messages]="validationMessages.passwordGroup"></app-validation-msg>
+          <img id="alarm-card" src="/assets/images/alarm_card.png"/>
+          <ion-item class="entry-input-item">
+            <ion-input formControlName="deviceModel" type="text" placeholder="Modelo Alarma"></ion-input>
+          </ion-item>
+          <app-validation-msg [control]="form.controls.deviceModel" [messages]="validationMessages.deviceModel"></app-validation-msg>
+          <ion-item class="entry-input-item">
+            <ion-input formControlName="imei" type="text" placeholder="IMEI"></ion-input>
+          </ion-item>
+          <app-validation-msg [control]="form.controls.imei" [messages]="validationMessages.imei"></app-validation-msg>
+          <ion-button [disabled]="!form.valid" expand="block" (click)="submit()" color="secondary" fill="solid">Registro</ion-button>
+          <!-- <ion-item class="entry-input-item">
+          </ion-item> -->
+          <ion-button href="/login" routerDirection="backward" expand="block" color="primary" fill="solid">Volver</ion-button>
+          <!-- <ion-item class="entry-input-item">
+          </ion-item> -->
+        </ion-list>
+      </form>
+    </div>
+  </app-entry-form>
+</ion-content>
+

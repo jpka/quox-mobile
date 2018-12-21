@@ -1,0 +1,62 @@
+{
+  "project_info": {
+    "project_number": "***REMOVED***",
+    "firebase_url": "https://quox-1000.firebaseio.com",
+    "project_id": "quox-1000",
+    "storage_bucket": "quox-1000.appspot.com"
+  },
+  "client": [
+    {
+      "client_info": {
+        "mobilesdk_app_id": "1:***REMOVED***:android:0123282aec240d54",
+        "android_client_info": {
+          "package_name": "com.bretox.quox"
+        }
+      },
+      "oauth_client": [
+        {
+          "client_id": "***REMOVED***-2vai6nv9vrtipskij19skn5d0vr2mjqj.apps.googleusercontent.com",
+          "client_type": 1,
+          "android_info": {
+            "package_name": "com.bretox.quox",
+            "certificate_hash": "267329f97996e4a42078a54ae8b2f8325da9f42b"
+          }
+        },
+        {
+          "client_id": "***REMOVED***-q9e63j0ode09khlomuuu52b09e8skieh.apps.googleusercontent.com",
+          "client_type": 3
+        }
+      ],
+      "api_key": [
+        {
+          "current_key": "***REMOVED***"
+        }
+      ],
+      "services": {
+        "analytics_service": {
+          "status": 1
+        },
+        "appinvite_service": {
+          "status": 2,
+          "other_platform_oauth_client": [
+            {
+              "client_id": "***REMOVED***-q9e63j0ode09khlomuuu52b09e8skieh.apps.googleusercontent.com",
+              "client_type": 3
+            },
+            {
+              "client_id": "***REMOVED***-p4lmanjg64chsm1poglrcrpiugm21557.apps.googleusercontent.com",
+              "client_type": 2,
+              "ios_info": {
+                "bundle_id": "com.quox.Quox"
+              }
+            }
+          ]
+        },
+        "ads_service": {
+          "status": 2
+        }
+      }
+    }
+  ],
+  "configuration_version": "1"
+}

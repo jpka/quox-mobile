@@ -1,0 +1,99 @@
+<app-header></app-header>
+
+<ion-content *ngIf="state$ | async as state">
+  <ion-grid>
+    <ion-row>
+      <ion-col size="3">
+        <div [ngClass]="{'indicator-icon': true, 'on': state.energySavings === false}">
+          <img [src]="'/assets/images/ic_battery_75_' + (state.energySavings === false ? 'on' : 'off') + '.svg'"/>
+          <div><div>Normal</div><div>Save</div></div>
+        </div>
+        <div [ngClass]="{'indicator-icon': true, 'on': state.energySavings}">
+          <img [src]="'/assets/images/ic_battery_50_' + (state.energySavings === true ? 'on' : 'off') + '.svg'"/>
+          <div><div>Super</div><div>Save</div></div>
+        </div>
+      </ion-col>
+      <ion-col size="6">
+        <img id="car-img" src="/assets/images/car.png"/>
+        <ion-grid class="overlay">
+          <ion-row align-items-center>
+            <div [ngClass]="{'car-icon': true, 'meridian': true, 'off': !state.engineCut}" id="engine-cut">
+              <img src="/assets/images/corte.png"/>
+              <ion-text *ngIf="state.engineCut != undefined">Bloqueo {{state.engineCut ? "On" : "Off"}}</ion-text>
+            </div>
+          </ion-row>
+          <ion-row class="middle">
+            <ion-col align-self-end>
+              <div [ngClass]="{'car-icon': true, 'equator': true, 'on': state.alarmArmed === false}" id="alarm-disarmed">
+                <img src="/assets/images/green-lock.png" />
+              </div>
+            </ion-col>
+            <ion-col align-self-center>
+              <ion-text id="armed-text" *ngIf="state.alarmArmed != undefined">{{state.alarmArmed ? "Armado" : "Desarmado"}}</ion-text>
+            </ion-col>
+            <ion-col align-self-end>
+              <div [ngClass]="{'car-icon': true, 'equator': true, 'on': state.alarmArmed}" id="alarm-armed">
+                <img src="/assets/images/red-lock.png"/>
+              </div>
+            </ion-col>
+          </ion-row>
+          <ion-row align-items-center>
+            <div [ngClass]="{'car-icon': true, 'meridian': true, 'off': !any(state.auxiliary)}" id="aux">
+              <img src="/assets/images/aux.png"/>
+              <ion-text *ngIf="state.auxiliary != undefined">Auxiliar {{any(state.auxiliary) ? "On" : "Off"}}</ion-text>
+            </div>
+          </ion-row>
+        </ion-grid>
+      </ion-col>
+      <ion-col size="3">
+        <!-- right side icons -->
+        <div [ngClass]="{'indicator-icon': true, 'off': (alarmCount$ | async) == 0}">
+          <span *ngIf="(alarmCount$ | async) > 0" class="badge">{{(alarmCount$ | async)}}</span>
+          <div (click)="navCtrl.navigateRoot('/tabs/(alerts:alerts)')">
+            <img src="/assets/images/alerts.png"/>
+            <div>Alertas</div>
+          </div>
+        </div>
+        <div [ngClass]="{'indicator-icon': true, 'off': state.siren == undefined}">
+          <img [src]="state.siren ? '/assets/images/sound.svg' : '/assets/images/no_sound.svg'"/>
+          <div>Sirena</div>
+        </div>
+      </ion-col>
+    </ion-row>
+    <ion-row align-items-center>
+      <ion-col no-padding>
+        <div class="progress-circle">
+          <div class="filling">
+            <img src="/assets/images/battery_small.png"/>
+            <div class="value">{{internalBattery$ | async}}</div>
+            <span class="unit">Volts</span>
+          </div>
+          <circle-progress outerStrokeColor="#fd5151" innerStrokeColor="#665572" [percent]="internalBatteryPercent$ | async"></circle-progress>
+          <div class="percent">{{internalBatteryPercent$ | async}}%</div>
+        </div>
+      </ion-col>
+      <ion-col no-padding>
+        <div class="progress-circle">
+          <div class="filling">
+            <img src="/assets/images/battery_car.png"/>
+            <div class="value">{{vehicleBattery$ | async}}</div>
+            <span class="unit">Volts</span>
+          </div>
+          <circle-progress outerStrokeColor="#4ec848" innerStrokeColor="#536a80" [percent]="vehicleBatteryPercent$ | async"></circle-progress>
+          <div class="percent">{{vehicleBatteryPercent$ | async}}%</div>
+        </div>
+      </ion-col>
+      <ion-col no-padding>
+        <div class="progress-circle">
+          <div class="filling">
+            <img src="/assets/images/flame.png"/>
+            <div class="value">8</div>
+            <span class="unit">Level</span>
+          </div>
+          <circle-progress outerStrokeColor="#ddea6c" innerStrokeColor="#617f8d" [percent]="75"></circle-progress>
+          <div class="percent">75%</div>
+        </div>
+      </ion-col>
+    </ion-row>
+  </ion-grid>
+</ion-content>

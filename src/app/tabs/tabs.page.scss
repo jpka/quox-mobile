@@ -1,0 +1,97 @@
+
+ion-menu {
+  --background: linear-gradient(#272b35, #305888);
+
+  ion-header {
+    text-align: center;
+    .close {
+      float: right;
+      font-size: 24px;
+    }
+    #profile-pic {
+      width: 45vw;
+      height: 45vw;
+      border: 4px solid #65abf9;
+    }
+    ion-text {
+      display: block;
+      font-size: 18px;
+      font-weight: 600;
+    }
+    &:after {
+      background: none;
+    }
+  }
+
+  hr {
+    width: 80%;
+    height: 2px;
+    background: #6a717e;
+    margin-top: 0;
+    margin-left: auto;
+    margin-right: auto;
+    margin-bottom: 30px;
+  }
+
+  ion-content {
+    --background: transparent;
+    
+    > ion-list {
+      overflow-y: scroll;
+      height: calc(100% - 64px);
+
+      > ion-item.vehicle {
+        --background: #385287;
+        --border-width: 0;
+        padding: 0;
+        margin-bottom: 5px;
+        opacity: 0.5;
+        &.selected {
+          opacity: 1;
+        }
+
+        .pic {
+          width: 50px;
+          height: 50px
+        }
+        .identification {
+          width: 100%;
+          text-align: center;
+          .imei {
+            font-size: 12px;
+          }
+        }
+      }
+    }
+    
+    #user-config {
+      position: absolute;
+      width: 100%;
+      bottom: 20px;
+      text-align: center;
+      
+      ion-button {
+        width: 90%;
+        margin: 0 auto;
+      }
+    }
+  }
+}
+
+ion-tab-button {
+  color: #65abf9;
+  &.tab-selected {
+    ion-icon {
+      &.not-selected {
+        display: none;
+      }
+    }
+  }
+  &:not(.tab-selected) {
+    ion-icon {
+      &.selected {
+        display: none;
+      }
+    }
+  }
+}

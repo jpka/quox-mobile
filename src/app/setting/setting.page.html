@@ -1,0 +1,31 @@
+<app-header></app-header>
+
+<ion-content padding>
+  <p class="description" *ngIf="setting.description">{{setting.description}}</p>
+  <form [formGroup]="form">
+    <ion-list lines="full" *ngIf="params$ | async as params">
+      <ng-container *ngFor="let setting of settings">
+        <div [ngClass]="[setting.name]" *ngIf="setting.name === params.setting">
+          <ion-item no-padding lines="full">
+            <ion-icon src="/assets/images/icons/{{setting.icons[0]}}"></ion-icon>
+            <ion-label>{{setting.toggleLabel[0]}}</ion-label>
+            <ion-toggle color="success" [formControlName]="setting.name"></ion-toggle>     
+          </ion-item>
+          <ion-item no-padding lines="full">
+            <ion-icon src="/assets/images/icons/{{setting.icons[1]}}"></ion-icon>
+            <ion-label>{{setting.toggleLabel[1]}}</ion-label>
+            <ion-toggle color="success" [(ngModel)]="inverseToggle[setting.name]" (ngModelChange)="form.get(params.setting).setValue(!$event)" [ngModelOptions]="{'standalone': true}"></ion-toggle>
+          </ion-item>
+        </div>
+      </ng-container>
+    </ion-list>
+    <ion-list lines="none" *ngIf="setting.extraControls && setting.extraControls.accelerometerSensibility">
+      <ion-item no-padding lines="none">
+        <p>{{setting.extraControls.accelerometerSensibility}}</p>
+      </ion-item>
+      <ion-item no-padding lines="none">
+        <ion-range [pin]="true" formControlName="accelerometerSensibility" min="0" max="12" step="1" debounce="2500"></ion-range>
+      </ion-item>
+    </ion-list>
+  </form>
+</ion-content>

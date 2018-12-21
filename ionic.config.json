@@ -1,0 +1,8 @@
+{
+  "name": "quox-mobile",
+  "integrations": {
+    "cordova": {}
+  },
+  "type": "angular",
+  "id": "4a34cb03"
+}

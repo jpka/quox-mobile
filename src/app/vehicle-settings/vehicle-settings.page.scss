@@ -1,0 +1,29 @@
+ion-content {
+  text-align: center;
+
+  #vehicle-img {
+    img {
+      height: 50px;
+      width: 50px;
+    }
+    ion-text {
+      display: block;
+      font-size: 10px;
+    }
+  }
+
+  #imei {
+    font-size: 16px;
+  }
+  #name-input {
+    margin: 0 auto;
+  }
+
+  .commands {
+    > ion-item {
+      > ion-icon[slot="start"] {
+        font-size: 34px;
+      }
+    }
+  }
+}

@@ -1,0 +1,13 @@
+<app-header></app-header>
+
+<ion-content>
+  <ion-list *ngIf="settingsState$ | async as settingsState">
+    <ion-item [ngClass]="[setting.name]" lines="full" *ngFor="let setting of settings" detail href="/tabs/(settings:settings/{{setting.name}})" routerDirection="forward">
+      <ion-icon slot="start" src="/assets/images/icons/{{setting.icon}}"></ion-icon>
+      <ion-label>
+        <h2>{{setting.label}}</h2>
+        <ion-text>{{setting.msg[settingsState[setting.name] ? 0 : 1]}}</ion-text>
+      </ion-label>
+    </ion-item>
+  </ion-list>
+</ion-content>

@@ -1,0 +1,7 @@
+<ng-container *ngIf="shouldDisplay()">
+  <ng-container *ngFor="let validation of messages"> 
+    <ion-text color="danger" *ngIf="control.hasError(validation.type)">
+      {{validation.msg}}
+    </ion-text>
+  </ng-container>
+</ng-container>

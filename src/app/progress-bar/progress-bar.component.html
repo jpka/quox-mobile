@@ -1,0 +1,5 @@
+<span class="value left" *ngIf="orientation === 'left'">{{value}}%</span>
+<div class="wrapper">
+  <div [ngStyle]="{'width': value + '%'}" class="bar"></div>
+</div>
+<span class="value right" *ngIf="orientation === 'right'">{{value}}%</span>

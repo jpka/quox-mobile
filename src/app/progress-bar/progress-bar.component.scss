@@ -1,0 +1,20 @@
+.wrapper {
+  background-color: #979797;
+  display: inline-block;
+  width: calc(100% - 36px);
+}
+.bar {
+  background-color: red;
+  height: 8px;
+}
+.value {
+  font-size: 12px;
+  font-weight: 600;
+
+  &.left {
+    padding-right: 5px;
+  }
+  &.right {
+    padding-left: 5px;
+  }
+}

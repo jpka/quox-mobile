@@ -1,0 +1,7 @@
+<app-header></app-header>
+
+<ion-content>
+  <agm-map [latitude]="center.lat" [longitude]="center.lng" [zoom]="16">
+    <agm-marker *ngIf="position" [latitude]="position.lat" [longitude]="position.lng" iconUrl="/assets/images/marker.png"></agm-marker>
+  </agm-map>
+</ion-content>
