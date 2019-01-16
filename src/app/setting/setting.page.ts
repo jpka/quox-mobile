@@ -4,6 +4,7 @@ import { UserService } from '../user.service';
 import { FormBuilder, FormGroup, FormControl } from '@angular/forms';
 import * as _ from "lodash/fp";
 import { PopupsService } from '../popups.service';
+import { UtilsService } from '../utils.service';
 
 @Component({
   selector: 'app-setting',
@@ -73,7 +74,8 @@ export class SettingPage implements OnInit {
     private route: ActivatedRoute,
     private user: UserService,
     private fb: FormBuilder,
-    private popups: PopupsService
+    private popups: PopupsService,
+    private utils: UtilsService
   ) { }
 
   setFormValue(key, value) {
@@ -132,17 +134,7 @@ export class SettingPage implements OnInit {
 
     this.user.setDeviceSettings(this.form.valueChanges).subscribe(async (update: Promise<any>) => {
       console.log("settings updated");
-      const loading = await this.popups.loading();
-
-      try {
-        await update;
-        loading.dismiss();
-        this.popups.info("Comando enviado");
-      } catch (e) {
-        loading.dismiss();
-        this.resetForm();
-        this.popups.error("No se pudo enviar el comando. Revise su conexión en intente nuevamente");
-      }
+      this.utils.handleRequest(update).catch(() => this.resetForm());
     });
   }
 }

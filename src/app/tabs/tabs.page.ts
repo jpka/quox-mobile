@@ -52,7 +52,7 @@ export class TabsPage {
     this.user.getDeviceRequestResult().subscribe(async ({ msg, status }) => {
       if (!initialRequestResultsReceived[this.user.localState.currentImei]) return;
       if (!msg || msg === "") return;
-      this.popups[status ? "success" : "error"](msg);
+      this.popups[status === "success" ? "success" : "error"](msg);
     });
 
     // this.user.getAlarms().subscribe(alarms => {
@@ -115,14 +115,5 @@ export class TabsPage {
       }
     // }, 5000);
     });
-
-
-    // // this.popups.notification("Alerta sensor de golpes", "Ducati Multiestrada", () => goToAlert("865794035916677", "2018-12-16 16:45:06"));
-    // setTimeout(() => {
-    //   let alert = '2018-12-16 16:45:06';
-    //   // this.navCtrl.navigateForward(`tabs/(alerts:alerts/${alert})#${alert}`);
-    //   // this.router.navigate(["tabs", "alerts:alerts", "2018-12-16 16:45:06"], {});
-    //   goToAlert("865794035916677", alert);
-    // }, 5000);
   }
 }

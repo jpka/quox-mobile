@@ -56,7 +56,7 @@ export class HeaderComponent implements OnInit {
   ngOnInit() {
     this.user.getReports(["child_added"]).subscribe(() => {
       if (this.reportRequested) {
-        this.reportRequested.dismiss();
+        // this.reportRequested.dismiss();
         this.reportRequested = null;
         this.popups.success("Reporte de estado recibido");
       }
@@ -64,14 +64,11 @@ export class HeaderComponent implements OnInit {
   }
 
   async requestReport() {
-    const loading = await this.popups.loading();
-    try {
-      await this.user.doDeviceRequest("report request");
-      await loading.dismiss();
-      this.reportRequested = await this.popups.info("Reporte de estado peticionado");
-    } catch (e) {
-      await loading.dismiss();
-      this.popups.error(`Hubo un error al peticionar el reporte, compruebe su conexión`);
-    }
+    this.utils.handleRequest(this.user.doDeviceRequest("report request"), {
+      sentMsg: "Reporte de estado peticionado",
+      errorMsg: "Hubo un error al peticionar el reporte, compruebe su conexión"
+    }).then(() => {
+      this.reportRequested = true;
+    });
   }
 }

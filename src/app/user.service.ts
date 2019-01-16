@@ -18,7 +18,7 @@ export class UserService {
   localState$ = {
     currentImei: new BehaviorSubject(null)
   };
-  // deviceConnected: boolean = false;
+  deviceConnected: boolean = false;
   deviceMessages = {
     alarmArmed: [["Armado activado", "Armado desactivado"], "El dispositivo rechazó la orden de armado/desarmado"],
     energySavings: [["Ahorro activado", "Ahorro desactivado"], "El dispositivo rechazó la orden de ahorro de energía"],
@@ -47,9 +47,10 @@ export class UserService {
         this.setLocalState({currentImei: imeis[0]});
       }
     });
-    // this.getDeviceState("connected").subscribe((connected: boolean) => {
-    //   this.deviceConnected = connected;
-    // });
+    this.getDeviceState("connected").subscribe((connected: boolean) => {
+      console.log(connected);
+      this.deviceConnected = connected;
+    });
   }
 
   setLocalState(data, persist = true) {

@@ -50,15 +50,9 @@ export class VehicleSettingsPage implements OnInit {
   }
 
   async sendCmd(cmd, label) {
-    const loading = await this.popups.loading();
-    try {
-      await this.user.doDeviceRequest(cmd);
-      loading.dismiss();
-      this.popups.info("Comando enviado");
-    } catch (e) {
-      await loading.dismiss();
-      this.popups.error(`Hubo un error al enviar el comando de ${label}`);
-    }
+    this.utils.handleRequest(this.user.doDeviceRequest(cmd), {
+      errorMsg: `Hubo un error al enviar el comando de ${label}`
+    });
   }
 
   ngAfterViewInit() {
