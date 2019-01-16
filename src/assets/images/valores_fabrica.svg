@@ -1,16 +1,5 @@
 <svg xmlns="http://www.w3.org/2000/svg" width="34" height="34" viewBox="0 0 34 34">
-    <defs>
-        <filter id="a" width="106.9%" height="141.4%" x="-3.5%" y="-20.7%" filterUnits="objectBoundingBox">
-            <feOffset dy="2" in="SourceAlpha" result="shadowOffsetOuter1"/>
-            <feGaussianBlur in="shadowOffsetOuter1" result="shadowBlurOuter1" stdDeviation="2"/>
-            <feColorMatrix in="shadowBlurOuter1" result="shadowMatrixOuter1" values="0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0.5 0"/>
-            <feMerge>
-                <feMergeNode in="shadowMatrixOuter1"/>
-                <feMergeNode in="SourceGraphic"/>
-            </feMerge>
-        </filter>
-    </defs>
-    <g fill="none" fill-rule="evenodd" stroke="#FFF" stroke-linecap="round" stroke-linejoin="round" filter="url(#a)" transform="translate(-20 -15)">
+    <g fill="none" fill-rule="evenodd" stroke="#FFF" stroke-linecap="round" stroke-linejoin="round" transform="translate(-20 -15)">
         <path d="M46 40.5H28a1.5 1.5 0 0 1-1.5-1.5V21a1.5 1.5 0 0 1 1.5-1.5h18a1.5 1.5 0 0 1 1.5 1.5v18a1.5 1.5 0 0 1-1.5 1.5z"/>
         <path d="M29.5 37.5h15v-15h-15zM29.5 19.5v-2M44.5 19.5v-2M32.5 17.5v2M35.5 17.5v2M38.5 17.5v2M41.5 17.5v2M29.5 42.5v-2M44.5 42.5v-2M32.5 40.5v2M35.5 40.5v2M38.5 40.5v2M41.5 40.5v2M47.5 22.5h2M47.5 37.5h2M49.5 25.5h-2M49.5 28.5h-2M49.5 31.5h-2M49.5 34.5h-2M24.5 22.5h2M24.5 37.5h2M26.5 25.5h-2M26.5 28.5h-2M26.5 31.5h-2M26.5 34.5h-2"/>
     </g>
