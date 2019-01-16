@@ -87,11 +87,11 @@
         <div class="progress-circle">
           <div class="filling">
             <img src="/assets/images/flame.png"/>
-            <div class="value">8</div>
+            <div class="value">{{state.accelerometerSensibility}}</div>
             <span class="unit">Level</span>
           </div>
           <circle-progress outerStrokeColor="#ddea6c" innerStrokeColor="#617f8d" [percent]="75"></circle-progress>
-          <div class="percent">75%</div>
+          <div class="percent">{{accelerometerSensPercent$ | async}}%</div>
         </div>
       </ion-col>
     </ion-row>

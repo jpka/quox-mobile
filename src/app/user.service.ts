@@ -170,6 +170,8 @@ export class UserService {
         return this.getDeviceState("internalBattery").pipe(map((value: number) => value * 100 / 4));
       case "vehicleBatteryPercent":
         return this.getDeviceState("vehicleBattery").pipe(map((value: number) => value ? ((value - 3) * 10): 0));
+      case "accelerometerSensPercent":
+        return this.getDeviceState("accelerometerSensibility").pipe(map((value: number) => Math.round(value * 100 / 12)));
       default:
         return null;
     }

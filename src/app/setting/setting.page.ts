@@ -3,6 +3,7 @@ import { ActivatedRoute } from '@angular/router';
 import { UserService } from '../user.service';
 import { FormBuilder, FormGroup, FormControl } from '@angular/forms';
 import * as _ from "lodash/fp";
+import { PopupsService } from '../popups.service';
 
 @Component({
   selector: 'app-setting',
@@ -65,30 +66,83 @@ export class SettingPage implements OnInit {
   ];
   params$ = this.route.params;
   inverseToggle: {[key: string]: boolean} = {};
-  form: FormGroup;
+  form: FormGroup = new FormGroup({});
+  currentSettings = {};
 
   constructor(
     private route: ActivatedRoute,
     private user: UserService,
-    private fb: FormBuilder
+    private fb: FormBuilder,
+    private popups: PopupsService
   ) { }
 
+  setFormValue(key, value) {
+    this.form.get(key).setValue(value, {emitEvent: false});
+    this.currentSettings[key] = value;
+
+    if (typeof value === "boolean") {
+      this.inverseToggle[key] = !value;
+    }
+  }
+
+  resetForm() {
+    Object.keys(this.currentSettings).forEach(key => {
+      this.setFormValue(key, this.currentSettings[key]);
+    });
+  }
+
   ngOnInit() {
-    console.log("init setting");
-    this.form = new FormGroup({});
+    let outstandingChanges = {};
     this.settings.concat({name: "accelerometerSensibility"}).forEach(setting => {
       this.form.addControl(setting.name, new FormControl());
-      this.user.getDeviceSettings(setting.name).subscribe(value => {
-        this.form.get(setting.name).setValue(value, {emitEvent: false});
-        console.log(value, typeof value);
-        if (typeof value === "boolean") {
-          this.inverseToggle[setting.name] = !value;
+      this.form.get(setting.name).valueChanges.subscribe(value => {
+        console.log("form changed", setting.name, value);
+        outstandingChanges[setting.name] = true;
+      });
+      this.user.getDeviceState(setting.name).subscribe(value => {
+        console.log("state changed", setting.name, value);
+        let msg = "";
+        if (outstandingChanges[setting.name]) {
+          switch (setting.name) {
+            case "alarmArmed":
+              msg = value ? "Armado activado" : "Armado desactivado";
+              break;
+            case "energySavings":
+              msg = value ? "Ahorro activado" : "Ahorro desactivado";
+              break;
+            case "engineCut":
+              msg = value ? "Corte de motor activado" : "Corte de motor desactivado";
+              break;
+            case "siren":
+              msg = value ? "Sirena activada" : "Sirena desactivada";
+              break;
+            case "accelerometerSensibility":
+              msg = "Sensibilidad de acelerómetro configurada";
+          }
+          this.popups.success(msg);
+          outstandingChanges[setting.name] = false;
         }
       });
+      this.user.getDeviceSettings(setting.name).subscribe(value => this.setFormValue(setting.name, value));
     });
+
     this.params$.subscribe(
       ({setting}) => this.setting = this.settings.find(s => s.name === setting)
     );
-    this.user.setDeviceSettings(this.form.valueChanges).subscribe();
+
+    this.user.setDeviceSettings(this.form.valueChanges).subscribe(async (update: Promise<any>) => {
+      console.log("settings updated");
+      const loading = await this.popups.loading();
+
+      try {
+        await update;
+        loading.dismiss();
+        this.popups.info("Comando enviado");
+      } catch (e) {
+        loading.dismiss();
+        this.resetForm();
+        this.popups.error("No se pudo enviar el comando. Revise su conexión en intente nuevamente");
+      }
+    });
   }
 }

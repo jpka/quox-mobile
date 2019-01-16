@@ -1,10 +1,11 @@
 import { Component, OnInit, Input } from '@angular/core';
 import * as moment from 'moment';
 import { UserService } from '../user.service';
-import { map, tap, startWith } from 'rxjs/operators';
+import { map, tap, startWith, switchMap } from 'rxjs/operators';
 import { MenuController } from '@ionic/angular';
 import { UtilsService } from '../utils.service';
 import { PopupsService } from '../popups.service';
+import { of } from 'rxjs';
 
 moment.locale('es', {
   relativeTime : {
@@ -36,8 +37,13 @@ export class HeaderComponent implements OnInit {
     map((vehicle: any) =>  vehicle.name || vehicle.imei)
   );
   lastConnection$ = this.user.getDeviceLastConnection().pipe(map(time => time ? moment(time).fromNow() : null));
-  gsmSignal$ = this.user.getDeviceState("gsmSignal").pipe(startWith(0), this.utils.or(0));
-  gpsSignal$ = this.user.getDeviceStateDerivedValue("gpsSignal").pipe(startWith(0), this.utils.or(0));
+  connected$ = this.user.getDeviceState("connected");
+  gsmSignal$ = this.connected$.pipe(
+    switchMap(connected => connected ? this.user.getDeviceState("gsmSignal").pipe(startWith(0), this.utils.or(0)) : of(0))
+  );
+  gpsSignal$ = this.connected$.pipe(
+    switchMap(connected => connected ? this.user.getDeviceStateDerivedValue("gpsSignal").pipe(startWith(0), this.utils.or(0)) : of(0))
+  );
   reportRequested;
   
   constructor(
