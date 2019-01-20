@@ -1,22 +1,25 @@
+<!-- <div id="header-bg"></div> -->
+
+<div id="header-top" #top>
+  <img class="bg" src="/assets/images/fondo_cabecera.png" />
+  <ion-grid>
+    <ion-row align-items-center style="position: relative">
+      <ion-col>
+        <img class="clickable" (click)="menuCtrl.toggle()" src="/assets/images/menu_bars.svg"/>
+      </ion-col>
+      <ion-col class="middle" size="8">
+        <img id="logo" src="/assets/images/logo_blanco.png"/>
+        <div id="vehicle-name">{{vehicleName$ | async}}</div>
+      </ion-col>
+      <ion-col>
+        <img id="connect" (click)="requestReport()" src="/assets/images/icons/conectar@3x.png"/>
+      </ion-col>
+    </ion-row>
+  </ion-grid>
+</div>
+
 <ion-header>
   <ion-grid no-padding>
-    <ion-row>
-      <img id="bg" src="/assets/images/fondo_cabecera.png" />
-      <ion-grid>
-        <ion-row align-items-center style="position: relative">
-          <ion-col>
-            <img class="clickable" (click)="menuCtrl.toggle()" src="/assets/images/menu_bars.svg"/>
-          </ion-col>
-          <ion-col class="middle" size="8">
-            <img id="logo" src="/assets/images/logo_blanco.png"/>
-            <div id="vehicle-name">{{vehicleName$ | async}}</div>
-          </ion-col>
-          <ion-col>
-            <img id="connect" (click)="requestReport()" src="/assets/images/icons/conectar@3x.png"/>
-          </ion-col>
-        </ion-row>
-      </ion-grid>
-    </ion-row>
     <ion-row>
       <ion-col>
         <div class="progress-title">GSM</div>

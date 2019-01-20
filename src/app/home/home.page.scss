@@ -1,5 +1,19 @@
+#home-wrapper {
+  height: 100%;
+  overflow-y: scroll;
+}
+
 ion-content {
   font-weight: 600;
+  
+  @media screen and (min-height: 570px) {
+    @media screen and (max-width: 349px) {
+      height: calc(100% - 23vw - 78px);
+    }
+    @media screen and (min-width: 350px) {
+      height: calc(100% - 23vw - 64px);
+    }
+  }
 
   .off {
     opacity: 0.5;
@@ -24,18 +38,35 @@ ion-content {
         > div {
           font-size: 12px;
           margin: 0 auto;
+
+          @media screen and (max-height: 639px) {
+            font-size: 10px;
+          }
         }
       }
       
       > ion-col:nth-child(1) {
         .indicator-icon {
-          width: 75%;
+          width: 58px;
+          @media screen and (max-height: 639px) {
+            width: 45px;
+          }
   
           > img {
             margin-top: -10px;
           }
           > div {
             margin-top: -15px;
+            @media screen and (max-height: 639px) {
+              margin-top: -10px;
+            }
+          }
+
+          &:nth-child(1) {
+            margin-top: -18px;
+            @media screen and (max-height: 639px) {
+              margin-top: -13px;
+            }
           }
         }
       }
@@ -43,7 +74,6 @@ ion-content {
       > ion-col:nth-child(3) {
         .indicator-icon {
           position: relative;
-          margin-bottom: 5px;
           .badge {
             right: unset;
             top: unset;
@@ -51,11 +81,34 @@ ion-content {
           img {
             display: block;
             margin: 0 auto;
-            width: 52%;
           }
           a {
             text-decoration: none;
             color: inherit;
+          }
+
+          // alarms icon
+          &:nth-child(1) {
+            @media screen and (max-height: 639px) {
+              img {
+                height: 28px;
+              }
+
+              .badge {
+                margin-top: -5px;
+                margin-left: -5px;
+              }
+            }
+          }
+
+          // siren icon
+          &:nth-child(2) {
+            img {
+              width: 50px;
+              @media screen and (max-height: 639px) {
+                width: 42px;
+              }
+            }
           }
         }
       }
@@ -77,9 +130,15 @@ ion-content {
           height: 100%;
           z-index: 1;
           text-align: center;
+          @media screen and (max-height: 639px) {
+            font-size: 10px;
+          }
           
           ion-row.middle {
-            font-size: 1.4em;
+            font-size: 2.7vh;
+            @media screen and (max-height: 639px) {
+              font-size: 2.4vh;
+            }
           }
           > ion-row {
             height: 33%;
@@ -94,8 +153,10 @@ ion-content {
               margin: 0 auto;
               img {
                 display: block;
-                // height: 7vh;
                 margin: 0 auto;
+                @media screen and (max-height: 639px) {
+                  height: 42px;
+                }
               }
               // left: calc(50% - 6vw);
             }
@@ -113,13 +174,17 @@ ion-content {
               right: -30px;
             }
             &#alarm-disarmed {
-              left: -30px;
+              // left: -30px;
             }
           }
           
           > ion-row:nth-child(2) {
             width: calc(100% + 143px);
-            margin-left: -71px;
+            margin-left: -70px;
+            @media screen and (max-height: 639px) {
+              width: calc(100% + 110px);
+              margin-left: -55px;
+            }
           }
         }
       }
@@ -161,6 +226,9 @@ ion-content {
           
           .percent {
             margin-top: -1.7vh;
+            @media screen and (max-height: 639px) {
+              margin-top: -8px;
+            }
           }
         }
       }

@@ -1,45 +1,52 @@
-.header-md::after {
-  background-image: none;
-}
-ion-header {
-  background: radial-gradient(ellipse at center -200px, #5c92d5 0%, #041d5e 100%);
-  
-  > ion-grid {
-    > ion-row:nth-child(1) {
-      position: relative;
-      #bg {
-        width: 100%;
+#header-top {
+  position: absolute;
+  z-index: 9999;
+  top: 0;
+  width: 100%;
+
+  .bg {
+    width: 100%;
+  }
+  ion-grid {
+    position: absolute;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    > ion-row {
+      height: 100%;
+      ion-col:first-child {
+        text-align: center;
       }
-      ion-grid {
-        position: absolute;
-        top: 0;
-        left: 0;
-        width: 100%;
-        height: 100%;
-        > ion-row {
-          height: 100%;
-          ion-col:first-child {
-            text-align: center;
-          }
-          ion-col:nth-child(2) {
-            #logo {
-              width: 140px;
-              margin: 0 auto;
-              display: block;
-            }
-            #vehicle-name {
-              font-size: 12px;
-              padding-top: 10px;
-              text-align: center;
-            }
-          }
+      ion-col:nth-child(2) {
+        #logo {
+          width: 140px;
+          margin: 0 auto;
+          display: block;
         }
-        #connect {
-          height: 28px;
+        #vehicle-name {
+          font-size: 12px;
+          padding-top: 10px;
+          text-align: center;
         }
       }
     }
-    > ion-row:nth-child(2) {
+    #connect {
+      height: 28px;
+    }
+  }
+}
+
+.header-md::after {
+  background-image: none;
+}
+
+ion-header {
+  background: radial-gradient(ellipse at center -200px, #5c92d5 0%, #041d5e 100%);
+  padding-top: 23vw;
+  
+  > ion-grid {
+    > ion-row:nth-child(1) {
       padding-bottom: 10px;
       padding-left: 20px;
       padding-right: 20px;
