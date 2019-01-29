@@ -2,7 +2,7 @@
 
 <ion-content>
   <agm-map *ngIf="center" [latitude]="center.lat" [longitude]="center.lng" [zoom]="16">
-    <agm-marker *ngIf="selected" iconUrl="/assets/images/marker.png" [latitude]="selected.position.lat" [longitude]="selected.position.lng"></agm-marker>
+    <agm-marker *ngIf="selected && selected.position" iconUrl="/assets/images/marker.png" [latitude]="selected.position.lat" [longitude]="selected.position.lng"></agm-marker>
   </agm-map>
   <ion-list>
     <ion-item [id]="formatId(alarm.key)" button lines="full" *ngFor="let alarm of alarms" (click)="select(alarm)">
