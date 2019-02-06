@@ -55,16 +55,6 @@ export class TabsPage {
       this.popups[status === "success" ? "success" : "error"](msg);
     });
 
-    // this.user.getAlarms().subscribe(alarms => {
-    //   setTimeout(() => {
-    //     initialAlertsReceived[this.user.localState.currentImei] = true;
-    //   });
-    // });
-    // this.user.getAlarmChanges(["child_added"]).subscribe(alarm => {
-    //   if (!initialAlertsReceived[this.user.localState.currentImei]) return;
-    //   this.popups.notification(`Alerta ${this.dataSvc.alarms[alarm.value.type].label}`);
-    // });
-
     this.fcm.initialize();
 
     this.fcm.onNotification().subscribe(notification => {

@@ -48,8 +48,8 @@ export class SettingPage implements OnInit {
     {
       name: "energySavings",
       description: "El modo Super Save protege la batería del vehículo cuando no lo estamos utilizando más de 4-5 días. El sistema entra en reposo reduciendo hasta 3000% su consumo de energía.",
-      toggleLabel: ["Normal Save", "Super Save"],
-      icons: ["battery_3.svg", "battery_4.svg"]
+      toggleLabel: ["Super Save", "Normal Save"],
+      icons: ["battery_4.svg", "battery_3.svg"]
     },
     {
       name: "maintenanceMode",
@@ -94,37 +94,8 @@ export class SettingPage implements OnInit {
   }
 
   ngOnInit() {
-    let outstandingChanges = {};
     this.settings.concat({name: "accelerometerSensibility"}).forEach(setting => {
       this.form.addControl(setting.name, new FormControl());
-      this.form.get(setting.name).valueChanges.subscribe(value => {
-        console.log("form changed", setting.name, value);
-        outstandingChanges[setting.name] = true;
-      });
-      this.user.getDeviceState(setting.name).subscribe(value => {
-        console.log("state changed", setting.name, value);
-        let msg = "";
-        if (outstandingChanges[setting.name]) {
-          switch (setting.name) {
-            case "alarmArmed":
-              msg = value ? "Armado activado" : "Armado desactivado";
-              break;
-            case "energySavings":
-              msg = value ? "Ahorro activado" : "Ahorro desactivado";
-              break;
-            case "engineCut":
-              msg = value ? "Corte de motor activado" : "Corte de motor desactivado";
-              break;
-            case "siren":
-              msg = value ? "Sirena activada" : "Sirena desactivada";
-              break;
-            case "accelerometerSensibility":
-              msg = "Sensibilidad de acelerómetro configurada";
-          }
-          this.popups.success(msg);
-          outstandingChanges[setting.name] = false;
-        }
-      });
       this.user.getDeviceSettings(setting.name).subscribe(value => this.setFormValue(setting.name, value));
     });
 

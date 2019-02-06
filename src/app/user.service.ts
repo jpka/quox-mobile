@@ -8,6 +8,7 @@ import { Storage } from '@ionic/storage';
 import * as _ from 'lodash';
 import { Router } from '@angular/router';
 import { AngularFireStorage } from '@angular/fire/storage';
+import * as moment from "moment";
 
 @Injectable({
   providedIn: 'root'
@@ -19,17 +20,6 @@ export class UserService {
     currentImei: new BehaviorSubject(null)
   };
   deviceConnected: boolean = false;
-  deviceMessages = {
-    alarmArmed: [["Armado activado", "Armado desactivado"], "El dispositivo rechazó la orden de armado/desarmado"],
-    energySavings: [["Ahorro activado", "Ahorro desactivado"], "El dispositivo rechazó la orden de ahorro de energía"],
-    engineCut: [["Corte de motor activado", "Corte de motor desactivado"], "El dispositivo rechazó la orden de corte de motor"],
-    siren: [["Sirena activada", "Sirena desactivada"], "El dispositivo rechazó la orden de configuración de sirena"],
-    maintenanceMode: [["Modo mantenimiento activado", "Modo mantenimiento desactivado"], "El dispositivo rechazó la orden de configuración de modo mantenimiento"],
-    accelerometerSensibility: ["Sensibilidad de acelerómetro configurada", "El dispositivo rechazó la orden de configuración de sensibilidad del acelerómetro"],
-    batteryAlarmThreshold: ["Aviso de alarma configurado", "El dispositivo rechazó la orden de configuración de aviso de alarma"],
-    partialReset: ["Reseteo parcial exitoso", "El dispositivo rechazó la orden de reseteo parcial"],
-    factoryReset: ["Reseteo de fábrica exitoso", "El dispositivo rechazó la orden de reseteo de fábrica"]
-  };
   defaultMapCenter = {lat: 39.4699, lng: -0.3763};
 
   constructor(
@@ -197,15 +187,15 @@ export class UserService {
     return this.db.list(`/devices/${this.localState.currentImei}/requests/pending`).push(request)
   }
 
-  getDeviceMessage(request, status, value = true) {
-    let message = this.deviceMessages[_.camelCase(request)];
-    if (!message) return false;
-    message = message[status === "success" ? 0 : 1];
-    if (Array.isArray(message)) {
-      message = message[value !== false ? 0 : 1];
-    }
-    return message;
-  }
+  // getDeviceMessage(request, status, value = true) {
+  //   let message = this.deviceMessages[_.camelCase(request)];
+  //   if (!message) return false;
+  //   message = message[status === "success" ? 0 : 1];
+  //   if (Array.isArray(message)) {
+  //     message = message[value !== false ? 0 : 1];
+  //   }
+  //   return message;
+  // }
 
   getDeviceCompletedRequests(cb = undefined) {
     return this.localState$.currentImei.pipe(
@@ -219,8 +209,12 @@ export class UserService {
       map(change => {
         // this.db.object(`/devices/${imei}/requests/completed/${change.key}`).remove();
         let request: any = change.payload.val();
+        let msg = request.msg;
+        if (request.status === "failure" && request.code === "device/sleeping") {
+          msg = `El comando será entregado a las ${moment(request.data.deliveredAt).format("HH:mm")}h`;  
+        }
         return {
-          msg: this.getDeviceMessage(request.name, request.status),
+          msg: msg,
           status: request.status
         };
       })

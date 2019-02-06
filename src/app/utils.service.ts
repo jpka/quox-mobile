@@ -41,13 +41,7 @@ export class UtilsService {
     try {
       await request;
       await loading.dismiss();
-      this.connected$.pipe(take(1)).toPromise().then(connected => {
-        if (connected) {
-          this.popups.info(opts.sentMsg || "Comando enviado");
-        } else {
-          this.popups.info(opts.disconnectedMsg || "Dispositivo desconectado. El comando será enviado cuando el dispositivo reconecte.");
-        }
-      });
+      this.popups.info(opts.sentMsg || "Comando enviado");
       return true;
     } catch (e) {
       await loading.dismiss();
