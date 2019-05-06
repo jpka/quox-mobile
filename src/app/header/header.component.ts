@@ -39,7 +39,7 @@ export class HeaderComponent implements OnInit {
   lastConnection$ = this.user.getDeviceLastConnection().pipe(map(time => time ? moment(time).fromNow() : null));
   connected$ = this.user.getDeviceState("connected");
   gsmSignal$ = this.connected$.pipe(
-    switchMap(connected => connected ? this.user.getDeviceState("gsmSignal").pipe(startWith(0), this.utils.or(0)) : of(0))
+    switchMap(connected => connected ? this.user.getDeviceStateDerivedValue("gsmSignal").pipe(startWith(0), this.utils.or(0)) : of(0))
   );
   gpsSignal$ = this.connected$.pipe(
     switchMap(connected => connected ? this.user.getDeviceStateDerivedValue("gpsSignal").pipe(startWith(0), this.utils.or(0)) : of(0))

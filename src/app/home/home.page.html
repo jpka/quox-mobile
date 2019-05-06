@@ -91,7 +91,7 @@
               <div class="value">{{state.accelerometerSensibility}}</div>
               <span class="unit">Level</span>
             </div>
-            <circle-progress outerStrokeColor="#ddea6c" innerStrokeColor="#617f8d" [percent]="75"></circle-progress>
+            <circle-progress outerStrokeColor="#ddea6c" innerStrokeColor="#617f8d" [percent]="accelerometerSensPercent$ | async"></circle-progress>
             <div class="percent">{{accelerometerSensPercent$ | async}}%</div>
           </div>
         </ion-col>

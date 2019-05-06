@@ -6,7 +6,6 @@ import { map, switchMap, flatMap, take, filter, finalize, withLatestFrom } from 
 import { User } from 'firebase';
 import { Storage } from '@ionic/storage';
 import * as _ from 'lodash';
-import { Router } from '@angular/router';
 import { AngularFireStorage } from '@angular/fire/storage';
 import * as moment from "moment";
 
@@ -17,7 +16,8 @@ export class UserService {
   user: User;
   localState: any = {};
   localState$ = {
-    currentImei: new BehaviorSubject(null)
+    currentImei: new BehaviorSubject(null),
+    alarmsCheckedOn: new BehaviorSubject(null)
   };
   deviceConnected: boolean = false;
   defaultMapCenter = {lat: 39.4699, lng: -0.3763};
@@ -157,12 +157,14 @@ export class UserService {
     switch (key) {
       case "gpsSignal":
         return this.getDeviceState("gpsSatellites").pipe(map(this.calculateGpsSignal));
+      case "gsmSignal":
+        return this.getDeviceState("gsmSignal").pipe(map((value: number) => Math.min(100, value)));
       case "internalBatteryPercent":
-        return this.getDeviceState("internalBattery").pipe(map((value: number) => value * 100 / 4));
+        return this.getDeviceState("internalBattery").pipe(map((value: number) => Math.min(100, value * 100 / 4)));
       case "vehicleBatteryPercent":
-        return this.getDeviceState("vehicleBattery").pipe(map((value: number) => value ? ((value - 3) * 10): 0));
+        return this.getDeviceState("vehicleBattery").pipe(map((value: number) => value ? (Math.min(100, (value - 3) * 10)): 0));
       case "accelerometerSensPercent":
-        return this.getDeviceState("accelerometerSensibility").pipe(map((value: number) => Math.round(value * 100 / 12)));
+        return this.getDeviceState("accelerometerSensibility").pipe(map((value: number) => Math.min(100, Math.round(value * 100 / 20))));
       default:
         return null;
     }
@@ -180,7 +182,7 @@ export class UserService {
   //   );
   // }
   calculateGpsSignal(sattelites) {
-    return sattelites * 10;
+    return Math.min(100, sattelites * 10);
   }
 
   doDeviceRequest(request) {
@@ -339,5 +341,29 @@ export class UserService {
         }, action);
       })
     );
+  }
+
+  timeKey(time = undefined) {
+    return moment(time).utc().format('Y-MM-DD HH:mm:ss');
+  }
+
+  getUnreadAlarmCount() {
+    return this.localState$.alarmsCheckedOn.pipe(
+      switchMap(time => this.localState$.currentImei.pipe(
+        switchMap(imei => 
+          this.db.list(
+            `/devices/${imei}/alarms`, 
+            ref => ref.orderByKey().startAt(time ? this.timeKey(time + 1) : "0")
+          ).valueChanges()
+        ),
+        map(list => list.length)
+      ))
+    );
+  }
+
+  markAlarmsAsSeen() {
+    return this.setLocalState({
+      alarmsCheckedOn: (new Date()).getTime()
+    });
   }
 }

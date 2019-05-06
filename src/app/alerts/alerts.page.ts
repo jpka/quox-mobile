@@ -88,5 +88,7 @@ export class AlertsPage implements OnInit {
         }
       }
     });
+
+    this.user.markAlarmsAsSeen();
   }
 }
