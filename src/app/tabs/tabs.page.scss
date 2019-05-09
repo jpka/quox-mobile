@@ -78,20 +78,67 @@ ion-menu {
   }
 }
 
-ion-tab-button {
-  color: #65abf9;
-  &.tab-selected {
-    ion-icon {
-      &.not-selected {
-        display: none;
+ion-tab-bar {
+  background: transparent;
+  height: 67px;
+  position: relative;
+  margin-top: -12px;
+  border: none;
+
+  .bg {
+    background: #1f2545;
+    height: 57px;
+    width: 100%;
+    position: absolute;
+    left: 0;
+    bottom: 0;
+  }
+
+  ion-tab-button {
+    --padding-top: 6px;
+    --padding-end: 5px;
+    --padding-start: 5px;
+    --padding-bottom: 6px;
+    color: #6d95eb;
+
+    &:not([tab="map"]) {
+      margin-top: 20px;
+      &.tab-selected {
+        ion-icon {
+          color: #fff;
+        }
+      }
+      ion-icon {
+        font-size: 28px;
+        height: 28px;
+        width: 28px;
+      }
+      ion-label {
+        margin-top: 3px;
       }
     }
-  }
-  &:not(.tab-selected) {
-    ion-icon {
-      &.selected {
-        display: none;
+    &[tab="map"] {
+      --padding-top: 0px;
+      --padding-bottom: 9px;
+      ion-icon {
+        color: transparent;
+        font-size: 50px;
+        height: 52px;
+        width: 46px;
       }
+    }
+    &.tab-selected {
+      color: #fff;
+      ion-icon {
+        transform: none;
+      }
+      ion-label {
+        transform: none;
+      }
+    }
+
+    ion-label {
+      font-size: 12px;
     }
   }
 }

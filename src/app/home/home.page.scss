@@ -7,12 +7,13 @@ ion-content {
   font-weight: 600;
   
   @media screen and (min-height: 570px) {
-    @media screen and (max-width: 349px) {
-      height: calc(100% - 23vw - 78px);
-    }
-    @media screen and (min-width: 350px) {
-      height: calc(100% - 23vw - 64px);
-    }
+    height: calc(100% - 23vw - 56px);
+    // @media screen and (max-width: 349px) {
+    //   height: calc(100% - 23vw - 56px);
+    // }
+    // @media screen and (min-width: 350px) {
+    //   height: calc(100% - 23vw - 56px);
+    // }
   }
 
   .off {
@@ -23,6 +24,7 @@ ion-content {
     height: 100%;
     background: radial-gradient(ellipse, #5c92d5 0%, #041d5e 100%);
     color: #fff;
+    padding-bottom: 0;
     
     > ion-row:nth-child(1) {
       height: 72%;
@@ -191,10 +193,17 @@ ion-content {
     }
 
     > ion-row:nth-child(2) {
-      height: 28%;
+      height: calc(28% - 11px);
+      background: rgba(61, 85, 151, 0.3);
+      border-radius: 8px;
+      // padding-top: 5px;
+      // padding-bottom: 10px;
+      margin: 0 -5px;
+      margin-top: 10px;
 
       > ion-col {
         height: 84%;
+        margin-top: -22px;
 
         .progress-circle {
           height: 100%;
