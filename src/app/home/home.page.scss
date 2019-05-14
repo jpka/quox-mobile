@@ -5,9 +5,13 @@
 
 ion-content {
   font-weight: 600;
+
+  &.motorcycle {
+    height: calc(457px + 145px);
+  }
   
   @media screen and (min-height: 570px) {
-    height: calc(100% - 23vw - 56px);
+    // height: calc(100% - 23vw - 56px);
     // @media screen and (max-width: 349px) {
     //   height: calc(100% - 23vw - 56px);
     // }
@@ -20,14 +24,25 @@ ion-content {
     opacity: 0.5;
   }
 
+  #vehicle-img {
+    position: absolute;
+    left: 50%;
+    &.car {
+      margin-left: -91px;
+    }
+    &.motorcycle {
+      margin-left: -100px;
+    }
+  }
+
   > ion-grid {
-    height: 100%;
     background: radial-gradient(ellipse, #5c92d5 0%, #041d5e 100%);
     color: #fff;
     padding-bottom: 0;
+    overflow: hidden;
     
     > ion-row:nth-child(1) {
-      height: 72%;
+      // height: 72%;
       
       .indicator-icon {
         text-align: center;
@@ -116,13 +131,31 @@ ion-content {
       }
 
       > ion-col:nth-child(2) {
-        background: url("/assets/images/car.png") no-repeat center;
-        background-size: contain;
-        #car-img {
-          display: none;
-          margin: 0 auto;
-          // max-height: 80%;
+        &.car {
+          // background-image: url("/assets/images/car.png");
+          height: 428px;
         }
+        &.motorcycle {
+          // background-image: url("/assets/images/motorcycle.svg");
+          height: 457px;
+          
+          #engine-cut {
+            margin-top: 41px;
+
+            ion-text {
+              padding-top: 8px;
+            }
+          }
+          #aux {
+            ion-text {
+              padding-bottom: 2px;
+            }
+            margin-bottom: 64px;
+          }
+        }
+        background-repeat: no-repeat;
+        background-position: top center;
+        background-size: contain;
         .overlay {
           background: none !important;
           position: absolute;
@@ -166,17 +199,15 @@ ion-content {
               // width: 27vw;
               // top: 50%;
             }
-            &#engine-cut {
-              top: 13%;
-            }
-            &#aux {
-              bottom: 50px;
-            }
             &#alarm-armed {
               right: -30px;
             }
             &#alarm-disarmed {
               // left: -30px;
+            }
+            ion-text {
+              display: block;
+              font-size: 10px;
             }
           }
           
@@ -193,17 +224,16 @@ ion-content {
     }
 
     > ion-row:nth-child(2) {
-      height: calc(28% - 11px);
+      // height: calc(28% - 11px);
       background: rgba(61, 85, 151, 0.3);
       border-radius: 8px;
-      // padding-top: 5px;
-      // padding-bottom: 10px;
+      padding-bottom: 12px;
       margin: 0 -5px;
       margin-top: 10px;
 
       > ion-col {
         height: 84%;
-        margin-top: -22px;
+        // margin-top: -22px;
 
         .progress-circle {
           height: 100%;
@@ -213,20 +243,20 @@ ion-content {
           .filling {
             position: absolute;
             top: 50%;
-            margin-top: -4.7vh;
+            margin-top: -38px;
             left: 0;
             width: 100%;
 
-            img {
-              height: 3.5vh;
-            }
+            // img {
+            //   height: 3.5vh;
+            // }
 
             .value {
-              font-size: 2.4vh;
+              font-size: 18px;
               margin-top: -3px;
             }
             .unit {
-              font-size: 1.3vh;
+              font-size: 9px;
               border-radius: 7px;
               padding: 1px 4px;
               border: 1px solid;
@@ -234,10 +264,10 @@ ion-content {
           }
           
           .percent {
-            margin-top: -1.7vh;
-            @media screen and (max-height: 639px) {
-              margin-top: -8px;
-            }
+            margin-top: -9px;
+            // @media screen and (max-height: 639px) {
+            //   margin-top: -8px;
+            // }
           }
         }
       }

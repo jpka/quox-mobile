@@ -269,6 +269,21 @@ export class UserService {
     return this.db.object(`/usersData/${this.user.uid}/vehicles/${this.localState.currentImei}`).update(data);
   }
 
+  getVehicleType() {
+    return this.getAttrs().pipe(
+      map(attrs => {
+        switch (attrs.deviceModel) {
+          case "W200":
+          case "Titan":
+            return "motorcycle";
+          case "X300":
+          case "Spartan":
+            return "car";
+        }
+      })
+    );
+  }
+
   getVehicles() {
     return combineLatest(
       this.getImeis(),

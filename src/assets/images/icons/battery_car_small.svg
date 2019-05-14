@@ -1,0 +1,24 @@
+<svg xmlns="http://www.w3.org/2000/svg" width="28" height="27" viewBox="0 0 28 27">
+    <defs>
+        <filter id="a" width="119%" height="119%" x="-9.5%" y="-9.5%" filterUnits="objectBoundingBox">
+            <feOffset dy="2" in="SourceAlpha" result="shadowOffsetOuter1"/>
+            <feGaussianBlur in="shadowOffsetOuter1" result="shadowBlurOuter1" stdDeviation="1"/>
+            <feColorMatrix in="shadowBlurOuter1" result="shadowMatrixOuter1" values="0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0.5 0"/>
+            <feMerge>
+                <feMergeNode in="shadowMatrixOuter1"/>
+                <feMergeNode in="SourceGraphic"/>
+            </feMerge>
+        </filter>
+    </defs>
+    <g fill="none" fill-rule="evenodd" filter="url(#a)" transform="translate(2)">
+        <rect width="21" height="15.537" x="1.5" y="5.363" stroke="#FFF" stroke-width="3" rx="1"/>
+        <rect width="2.457" height="3.558" x="3.286" y="1" stroke="#FFF" stroke-width="2" rx="1"/>
+        <rect width="2.457" height="3.558" x="18.257" y="1" stroke="#FFF" stroke-width="2" rx="1"/>
+        <text fill="#FFF" font-family="AvenirNext-DemiBold, Avenir Next" font-size="10" font-weight="500" letter-spacing="-1.112">
+            <tspan x="4.571" y="10.742">+</tspan> <tspan x="10.019" y="10.742" font-size="14"> </tspan>
+        </text>
+        <text fill="#FFF" font-family="AvenirNext-DemiBold, Avenir Next" font-size="16" font-weight="500" letter-spacing="-.988">
+            <tspan x="15.162" y="16.014">-</tspan>
+        </text>
+    </g>
+</svg>

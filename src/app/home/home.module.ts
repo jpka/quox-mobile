@@ -9,8 +9,8 @@ import { NgCircleProgressModule } from 'ng-circle-progress';
     TabPageModule,
     RouterModule.forChild([{ path: '', component: HomePage }]),
     NgCircleProgressModule.forRoot({
-      radius: 32,
-      responsive: true,
+      radius: 43,
+      responsive: false,
       outerStrokeWidth: 5,
       innerStrokeWidth: 5,
       space: -5,

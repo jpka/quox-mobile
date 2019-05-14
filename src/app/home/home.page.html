@@ -1,7 +1,11 @@
-<div id="home-wrapper">
+<div id="home-wrapper" *ngIf="state$ | async as state">
   <app-header></app-header>
 
-  <ion-content *ngIf="state$ | async as state">
+  <ion-content *ngIf="vehicleType$ | async as vehicleType" [ngClass]="[vehicleType]">
+    <img 
+      id="vehicle-img"
+      [ngClass]="[vehicleType]"
+      [src]="'/assets/images/' + (vehicleType === 'car' ? 'car.png' : 'motorcycle.svg')">
     <ion-grid>
       <ion-row>
         <ion-col size="3">
@@ -14,11 +18,10 @@
             <div><div>Super</div><div>Save</div></div>
           </div>
         </ion-col>
-        <ion-col size="6">
-          <img id="car-img" src="/assets/images/car.png"/>
+        <ion-col size="6" [ngClass]="[vehicleType]">
           <ion-grid class="overlay">
             <ion-row align-items-center>
-              <div [ngClass]="{'car-icon': true, 'meridian': true, 'off': !state.engineCut}" id="engine-cut">
+              <div [ngClass]="{'car-icon': true, 'meridian': true, 'on': state.engineCut}" id="engine-cut">
                 <img src="/assets/images/corte.png"/>
                 <ion-text *ngIf="state.engineCut != undefined">Bloqueo {{state.engineCut ? "On" : "Off"}}</ion-text>
               </div>
@@ -39,9 +42,10 @@
               </ion-col>
             </ion-row>
             <ion-row align-items-center>
-              <div [ngClass]="{'car-icon': true, 'meridian': true, 'off': !any(state.auxiliary)}" id="aux">
+              <div [ngClass]="{'car-icon': true, 'meridian': true, 'on': any(state.auxiliary)}" id="aux">
+                <ion-text *ngIf="state.auxiliary != undefined && vehicleType === 'motorcycle'">Auxiliar {{any(state.auxiliary) ? "On" : "Off"}}</ion-text>
                 <img src="/assets/images/aux.png"/>
-                <ion-text *ngIf="state.auxiliary != undefined">Auxiliar {{any(state.auxiliary) ? "On" : "Off"}}</ion-text>
+                <ion-text *ngIf="state.auxiliary != undefined && vehicleType === 'car'">Auxiliar {{any(state.auxiliary) ? "On" : "Off"}}</ion-text>
               </div>
             </ion-row>
           </ion-grid>
@@ -51,7 +55,7 @@
           <div [ngClass]="{'indicator-icon': true, 'off': (alarmCount$ | async) == 0}">
             <span *ngIf="(alarmCount$ | async) > 0" class="badge">{{(alarmCount$ | async)}}</span>
             <div (click)="navCtrl.navigateRoot('/tabs/(alerts:alerts)')">
-              <img src="/assets/images/alerts.png"/>
+              <img src="/assets/images/icons/alerts.png"/>
               <div>Alertas</div>
             </div>
           </div>
@@ -65,7 +69,7 @@
         <ion-col no-padding>
           <div class="progress-circle">
             <div class="filling">
-              <img src="/assets/images/battery_small.png"/>
+              <img src="/assets/images/icons/battery_small.svg" />
               <div class="value">{{internalBattery$ | async}}</div>
               <span class="unit">Volts</span>
             </div>
@@ -76,7 +80,7 @@
         <ion-col no-padding>
           <div class="progress-circle">
             <div class="filling">
-              <img src="/assets/images/battery_car.png"/>
+              <img src="/assets/images/icons/battery_car_small.svg"/>
               <div class="value">{{vehicleBattery$ | async}}</div>
               <span class="unit">Volts</span>
             </div>
@@ -87,7 +91,7 @@
         <ion-col no-padding>
           <div class="progress-circle">
             <div class="filling">
-              <img src="/assets/images/flame.png"/>
+              <img style="margin-top: -2px" src="/assets/images/icons/flame_small.svg"/>
               <div class="value">{{state.accelerometerSensibility}}</div>
               <span class="unit">Level</span>
             </div>

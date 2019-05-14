@@ -26,6 +26,7 @@ export class HomePage {
   accelerometerSensPercent$ = this.user.getDeviceStateDerivedValue("accelerometerSensPercent").pipe(
     this.utils.or(0)
   );
+  vehicleType$ = this.user.getVehicleType();
   alarmCount$ = this.user.getUnreadAlarmCount();
 
   constructor(
