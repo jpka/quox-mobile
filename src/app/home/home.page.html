@@ -20,29 +20,29 @@
           <ion-grid class="overlay">
             <ion-row align-items-center>
               <div [ngClass]="{'car-icon': true, 'meridian': true, 'on': state.engineCut}" id="engine-cut">
-                <img src="/assets/images/corte.png"/>
+                <img src="/assets/images/icons/corte.svg"/>
                 <ion-text *ngIf="state.engineCut != undefined">Bloqueo {{state.engineCut ? "On" : "Off"}}</ion-text>
               </div>
             </ion-row>
             <ion-row class="middle">
               <ion-col align-self-end>
                 <div [ngClass]="{'car-icon': true, 'equator': true, 'on': state.alarmArmed === false}" id="alarm-disarmed">
-                  <img src="/assets/images/green-lock.png" />
+                  <img src="/assets/images/icons/disarmed.svg" />
                 </div>
               </ion-col>
               <ion-col align-self-center>
-                <ion-text id="armed-text" *ngIf="state.alarmArmed != undefined">{{state.alarmArmed ? "Armado" : "Desarmado"}}</ion-text>
+                <ion-text id="armed-text" *ngIf="state.alarmArmed != undefined && vehicleType === 'car'">{{state.alarmArmed ? "Armado" : "Desarmado"}}</ion-text>
               </ion-col>
               <ion-col align-self-end>
                 <div [ngClass]="{'car-icon': true, 'equator': true, 'on': state.alarmArmed}" id="alarm-armed">
-                  <img src="/assets/images/red-lock.png"/>
+                  <img src="/assets/images/icons/armed.svg"/>
                 </div>
               </ion-col>
             </ion-row>
             <ion-row align-items-center>
               <div [ngClass]="{'car-icon': true, 'meridian': true, 'on': any(state.auxiliary)}" id="aux">
                 <ion-text *ngIf="state.auxiliary != undefined && vehicleType === 'motorcycle'">Auxiliar {{any(state.auxiliary) ? "On" : "Off"}}</ion-text>
-                <img src="/assets/images/aux.png"/>
+                <img src="/assets/images/icons/aux.svg"/>
                 <ion-text *ngIf="state.auxiliary != undefined && vehicleType === 'car'">Auxiliar {{any(state.auxiliary) ? "On" : "Off"}}</ion-text>
               </div>
             </ion-row>

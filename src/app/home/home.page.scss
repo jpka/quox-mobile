@@ -67,20 +67,16 @@ ion-content {
           // }
         }
       }
-
-      > .sideicon-column {
-        @media screen and (max-height: 639px) {
-          transform: scale(0.85);
-          margin-top: -40px;
-        }
-      }
       
       > ion-col:nth-child(1) {
+        @media screen and (max-height: 639px) {
+          transform: scale(0.85) translate(-15px, -40px);
+        }
         .indicator-icon {
           width: 58px;
-          @media screen and (max-height: 639px) {
-            // width: 45px;
-          }
+          // @media screen and (max-height: 639px) {
+          //   // width: 45px;
+          // }
   
           // > img {
           //   margin-top: -10px;
@@ -124,6 +120,9 @@ ion-content {
       }
 
       > ion-col:nth-child(3) {
+        @media screen and (max-height: 639px) {
+          transform: scale(0.85) translate(10px, -40px);
+        }
         .indicator-icon {
           position: relative;
           .badge {
@@ -169,6 +168,9 @@ ion-content {
         &.car {
           // background-image: url("/assets/images/car.png");
           height: 428px;
+          #aux {
+            margin-top: -33px;
+          }
         }
         &.motorcycle {
           // background-image: url("/assets/images/motorcycle.svg");
@@ -186,6 +188,10 @@ ion-content {
               padding-bottom: 2px;
             }
             margin-bottom: 64px;
+          }
+
+          #armed-text {
+            visibility: hidden;
           }
         }
         background-repeat: no-repeat;
@@ -205,10 +211,10 @@ ion-content {
           }
           
           ion-row.middle {
-            font-size: 2.7vh;
-            @media screen and (max-height: 639px) {
-              font-size: 2.4vh;
-            }
+            font-size: 20px;
+            // @media screen and (max-height: 639px) {
+            //   font-size: 2.4vh;
+            // }
           }
           > ion-row {
             height: 33%;
@@ -247,12 +253,12 @@ ion-content {
           }
           
           > ion-row:nth-child(2) {
-            width: calc(100% + 143px);
-            margin-left: -70px;
-            @media screen and (max-height: 639px) {
-              width: calc(100% + 110px);
-              margin-left: -55px;
-            }
+            width: calc(100% + 164px);
+            margin-left: -81px;
+            // @media screen and (max-height: 639px) {
+            //   width: calc(100% + 110px);
+            //   margin-left: -55px;
+            // }
           }
         }
       }
