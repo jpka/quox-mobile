@@ -9,16 +9,19 @@ ion-content {
   &.motorcycle {
     height: calc(457px + 145px);
   }
-  
-  @media screen and (min-height: 570px) {
-    // height: calc(100% - 23vw - 56px);
-    // @media screen and (max-width: 349px) {
-    //   height: calc(100% - 23vw - 56px);
-    // }
-    // @media screen and (min-width: 350px) {
-    //   height: calc(100% - 23vw - 56px);
-    // }
+  &.car {
+    height: calc(428px + 145px);
   }
+  
+  // @media screen and (min-height: 570px) {
+  //   height: calc(100% - 23vw - 56px);
+  //   @media screen and (max-width: 349px) {
+  //     height: calc(100% - 23vw - 56px);
+  //   }
+  //   @media screen and (min-width: 350px) {
+  //     height: calc(100% - 23vw - 56px);
+  //   }
+  // }
 
   .off {
     opacity: 0.5;
@@ -47,6 +50,9 @@ ion-content {
       .indicator-icon {
         text-align: center;
         margin: 0 auto;
+        margin-bottom: 20px;
+
+        
     
         > img {
           width: 100%;
@@ -56,9 +62,16 @@ ion-content {
           font-size: 12px;
           margin: 0 auto;
 
-          @media screen and (max-height: 639px) {
-            font-size: 10px;
-          }
+          // @media screen and (max-height: 639px) {
+          //   font-size: 10px;
+          // }
+        }
+      }
+
+      > .sideicon-column {
+        @media screen and (max-height: 639px) {
+          transform: scale(0.85);
+          margin-top: -40px;
         }
       }
       
@@ -66,23 +79,45 @@ ion-content {
         .indicator-icon {
           width: 58px;
           @media screen and (max-height: 639px) {
-            width: 45px;
+            // width: 45px;
           }
   
-          > img {
-            margin-top: -10px;
-          }
-          > div {
-            margin-top: -15px;
-            @media screen and (max-height: 639px) {
-              margin-top: -10px;
-            }
-          }
+          // > img {
+          //   margin-top: -10px;
+          // }
+          // > div {
+          //   margin-top: -15px;
+          //   @media screen and (max-height: 639px) {
+          //     margin-top: -10px;
+          //   }
+          // }
 
-          &:nth-child(1) {
-            margin-top: -18px;
-            @media screen and (max-height: 639px) {
-              margin-top: -13px;
+          // &:nth-child(1) {
+          //   // margin-top: -18px;
+          //   @media screen and (max-height: 639px) {
+          //     margin-top: -13px;
+          //   }
+          // }
+
+          &.battery-icon {
+            // margin: 0 14px;
+            background-image: url("/assets/images/icons/sleep-status.svg");
+            background-repeat: no-repeat;
+            background-position: 16px 0;
+            height: 56px;
+            width: 72px;
+            margin-bottom: 22px;
+            // @media screen and (max-height: 639px) {
+            //   margin-bottom: 16px;
+            // }
+            opacity: 0.4;
+            .text {
+              margin-top: 0;
+              padding-top: 40px;
+            }
+          
+            &.on {
+              opacity: 1;
             }
           }
         }
@@ -106,25 +141,25 @@ ion-content {
 
           // alarms icon
           &:nth-child(1) {
-            @media screen and (max-height: 639px) {
-              img {
-                height: 28px;
-              }
+            // @media screen and (max-height: 639px) {
+            //   img {
+            //     height: 28px;
+            //   }
 
-              .badge {
-                margin-top: -5px;
-                margin-left: -5px;
-              }
-            }
+            //   .badge {
+            //     margin-top: -5px;
+            //     margin-left: -5px;
+            //   }
+            // }
           }
 
           // siren icon
           &:nth-child(2) {
             img {
               width: 50px;
-              @media screen and (max-height: 639px) {
-                width: 42px;
-              }
+              // @media screen and (max-height: 639px) {
+              //   width: 42px;
+              // }
             }
           }
         }

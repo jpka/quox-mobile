@@ -8,14 +8,12 @@
       [src]="'/assets/images/' + (vehicleType === 'car' ? 'car.png' : 'motorcycle.svg')">
     <ion-grid>
       <ion-row>
-        <ion-col size="3">
-          <div [ngClass]="{'indicator-icon': true, 'on': state.energySavings === false}">
-            <img [src]="'/assets/images/ic_battery_75_' + (state.energySavings === false ? 'on' : 'off') + '.svg'"/>
-            <div><div>Normal</div><div>Save</div></div>
+        <ion-col size="3" class="sideicon-column">
+          <div [ngClass]="{'indicator-icon': true, 'battery-icon': true, 'on': state.energySavings === false}">
+            <div class="text">Sleep</div>
           </div>
-          <div [ngClass]="{'indicator-icon': true, 'on': state.energySavings}">
-            <img [src]="'/assets/images/ic_battery_50_' + (state.energySavings === true ? 'on' : 'off') + '.svg'"/>
-            <div><div>Super</div><div>Save</div></div>
+          <div [ngClass]="{'indicator-icon': true, 'battery-icon': true, 'on': state.energySavings}" style="background-position:16px -70px;">
+            <div class="text">Activo</div>
           </div>
         </ion-col>
         <ion-col size="6" [ngClass]="[vehicleType]">
@@ -50,12 +48,12 @@
             </ion-row>
           </ion-grid>
         </ion-col>
-        <ion-col size="3">
+        <ion-col size="3" class="sideicon-column">
           <!-- right side icons -->
           <div [ngClass]="{'indicator-icon': true, 'off': (alarmCount$ | async) == 0}">
             <span *ngIf="(alarmCount$ | async) > 0" class="badge">{{(alarmCount$ | async)}}</span>
             <div (click)="navCtrl.navigateRoot('/tabs/(alerts:alerts)')">
-              <img src="/assets/images/icons/alerts.png"/>
+              <img src="/assets/images/icons/warning.svg"/>
               <div>Alertas</div>
             </div>
           </div>
