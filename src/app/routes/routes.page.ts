@@ -9,6 +9,16 @@ import localeEsExtra from '@angular/common/locales/extra/es';
 
 registerLocaleData(localeEs, 'es-ES', localeEsExtra);
 
+moment.locale('es', {
+  months : 'Enero_Febrero_Marzo_Abril_Mayo_Junio_Julio_Agosto_Septiembre_Octubre_Noviembre_Diciembre'.split('_'),
+  // monthsShort : 'janv._févr._mars_avr._mai_juin_juil._août_sept._oct._nov._déc.'.split('_'),
+  monthsParseExact : true,
+  weekdays : ["Domingo", "Lunes", "Martes", "Miércoles", "Jueves", "Viernes"],
+  // weekdaysShort : 'dim._lun._mar._mer._jeu._ven._sam.'.split('_'),
+  // weekdaysMin : 'Di_Lu_Ma_Me_Je_Ve_Sa'.split('_'),
+  weekdaysParseExact : true,
+});
+
 declare var google: any;
 
 @Component({
@@ -102,5 +112,9 @@ export class RoutesPage implements OnInit {
     this.mapComponent.mapReady.subscribe(map => {
       this.map = map;
     });
+  }
+
+  fmtDate(date, format) {
+    return moment(date).format(format);
   }
 }

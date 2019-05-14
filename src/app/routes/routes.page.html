@@ -15,7 +15,7 @@
       <ion-item lines="full" *ngFor="let route of routes" button (click)="see(route)">
         <img class="circle vehicle-pic" *ngIf="vehicle$ | async as vehicle" [src]="vehicle.picUrl"/>
         <div class="date-wrapper">
-          <div class="date">{{route.times[0] | date: "EEEE d 'de' MMMM"}}</div>
+          <div class="date">{{fmtDate(route.times[0], "dddd D [de] MMMM")}}</div>
           <div class="duration yellow-color">Duración: {{route.duration.hours()}}:{{route.duration.minutes()}}:{{route.duration.seconds()}}</div>
         </div>
         <div class="start-end">
